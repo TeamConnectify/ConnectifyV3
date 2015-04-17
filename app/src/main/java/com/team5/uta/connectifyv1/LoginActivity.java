@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -37,10 +38,18 @@ public class LoginActivity extends ActionBarActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f5793f")));
 
         httpWrapper = new HttpWrapper();
+        final TextView forgot_password = (TextView) findViewById(R.id.forgot_pwd);
         final Button go = (Button) findViewById(R.id.btn_login);
+        forgot_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent forgot_pwd_intent = new Intent(LoginActivity.this, UserIdForgotPwd.class);
+                startActivity(forgot_pwd_intent);
 
+            }
+        });
 //        SharedPreferences userData = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-//        final String uname = (String)userData.getString("Email", "");
+//        final String uname = (String)userDTextViewata.getString("Email", "");
 //        final String password = (String)userData.getString("Password", "");
 
         final EditText email = (EditText) findViewById(R.id.txt_login_email);

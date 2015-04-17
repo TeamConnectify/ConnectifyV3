@@ -84,7 +84,8 @@
             android:height="10dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="142dp" />
+            android:layout_marginBottom="142dp"
+            android:linksClickable="true"/>
 
     </LinearLayout>
 
