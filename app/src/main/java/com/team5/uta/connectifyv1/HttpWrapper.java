@@ -162,4 +162,14 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
         this.mapActivity = mapActivity;
     }
 
+    public SecurityQuestions getSecurityQuestionsActivity() {
+        return securityQuestionsActivity;
+    }
+
+    public void setSecurityQuestionsActivity(SecurityQuestions securityQuestionsActivity) {
+        this.securityQuestionsActivity = securityQuestionsActivity;
+    }
+
+    private SecurityQuestions securityQuestionsActivity;
+
 }
