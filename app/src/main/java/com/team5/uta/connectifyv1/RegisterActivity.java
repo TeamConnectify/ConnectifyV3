@@ -41,6 +41,16 @@ public class RegisterActivity extends ActionBarActivity {
     private HttpWrapper httpWrapper;
     private User user;
 
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    private String user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +92,7 @@ public class RegisterActivity extends ActionBarActivity {
                             editor.putString("Email", email.getText().toString());
                             editor.commit();
 
-                            String uid = UUID.randomUUID().toString();
+                            String uid = "";
                             String fname = first_name.getText().toString();
                             String lname = last_name.getText().toString();
                             String pwd = password.getText().toString();
@@ -105,7 +115,7 @@ public class RegisterActivity extends ActionBarActivity {
 
                             //http post
                             try{
-                                httppost = new HttpPost("http://omega.uta.edu/~sxa1001/register.php");
+                                httppost = new HttpPost("http://omega.uta.edu/~ssk0590/register.php");
                                 httpWrapper.setRegisterActivity(RegisterActivity.this);
                                 httpWrapper.execute(httppost);
                             }
@@ -157,6 +167,7 @@ public class RegisterActivity extends ActionBarActivity {
         if(status.equals("Success")) {
             Log.i(TAG,"Inside registerResult : Success");
             Intent securityQuestionsActivity = new Intent(RegisterActivity.this, SecurityQuestions.class);
+            user.setUid(getUser_id());
             securityQuestionsActivity.putExtra("user", user);
             startActivity(securityQuestionsActivity);
         } else {

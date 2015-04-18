@@ -11,6 +11,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -63,7 +64,15 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
         if(result1.contains("Register")) {
             if(result1.contains("Success")) {
                 status = "Success";
-                this.registerActivity.registerResult(status);
+
+                try {
+                    JSONObject jObj = new JSONObject(result1);
+                    this.registerActivity.setUser_id(jObj.getString("user_id"));
+                    this.registerActivity.registerResult(status);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             } else {
                 status = "Fail";
                 this.registerActivity.registerResult(status);
