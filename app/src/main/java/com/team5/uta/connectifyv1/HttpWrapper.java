@@ -10,6 +10,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -77,6 +78,12 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
             }
         } else if(result1.contains("Get interest")) {
             this.mapActivity.openUserProfile(result1);
+        } else if(result1.contains("Get Security Questions")) {
+            try {
+                this.userIdForgotPwd.getSecurityQuestions(result1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -171,5 +178,15 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
     }
 
     private SecurityQuestions securityQuestionsActivity;
+
+    public UserIdForgotPwd getUserIdForgotPwd() {
+        return userIdForgotPwd;
+    }
+
+    public void setUserIdForgotPwd(UserIdForgotPwd userIdForgotPwd) {
+        this.userIdForgotPwd = userIdForgotPwd;
+    }
+
+    private UserIdForgotPwd userIdForgotPwd;
 
 }
