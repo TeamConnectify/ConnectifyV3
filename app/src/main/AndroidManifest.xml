@@ -68,6 +68,14 @@
             android:name=".DisplayPassword"
             android:label="Connectify" >
         </activity>
+        <activity
+            android:name=".NotificationActivity"
+            android:label="Connectify" >
+        </activity>
+        <activity
+            android:name=".OtherUserProfile"
+            android:label="Connectify" >
+        </activity>
     </application>
 
 </manifest>

@@ -31,7 +31,7 @@
     <string name="profile">Profile</string>
     <string name="interests">Interests</string>
     <string name="title_activity_user_profile">UserProfile</string>
-
+    <string name="notification">Notifications</string>
     <string name="anime">Anime</string>
     <string name="big_data">Big Data</string>
     <string name="blogging">Blogging</string>
