@@ -41,8 +41,10 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
         try{
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httpPost = httppost[0];
-            Log.i(TAG,httpPost.toString());
-            httpPost.setEntity(new UrlEncodedFormEntity(postParameters));
+            Log.i(TAG,httpPost.getURI().toString());
+            if(postParameters!=null) {
+                httpPost.setEntity(new UrlEncodedFormEntity(postParameters));
+            }
             HttpResponse response = httpclient.execute(httpPost);
             HttpEntity entity = response.getEntity();
             is = entity.getContent();
@@ -64,12 +66,10 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
         if(result1.contains("Register")) {
             if(result1.contains("Success")) {
                 status = "Success";
-
                 try {
                     JSONObject jObj = new JSONObject(result1);
                     this.registerActivity.setUser_id(jObj.getString("user_id"));
                     this.registerActivity.registerResult(status);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -86,7 +86,11 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
                 this.loginActivity.loginResult(result1);
             }
         } else if(result1.contains("Get interest")) {
-            this.mapActivity.openUserProfile(result1);
+            this.loginActivity.getInterestFromLoginResult(result1);
+        }  else if(result1.contains("Get Location Success")) {
+            this.mapActivity.getUsersLocationResult(result1);
+        } else if(result1.contains("Get other user interest")) {
+            this.mapActivity.getOtherUserInterestResult(result1);
         } else if(result1.contains("Get Security Questions")) {
             try {
                 this.userIdForgotPwd.getSecurityQuestions(result1);
