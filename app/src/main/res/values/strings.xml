@@ -4,9 +4,9 @@
     <string name="app_name">Connectify</string>
     <string name="action_settings">Settings</string>
     <string name="login_email_id">UTA Email ID</string>
-    <string name="login_pwd">password</string>
+    <string name="login_pwd">Password</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="forgot_pwd">Forgot Password</string>
+    <string name="forgot_pwd">Forgot Password? Click here!</string>
     <string name="lbl_sign_in">Sign In</string>
     <string name="go">go</string>
     <string name="try_me">try me</string>
@@ -54,8 +54,7 @@
     <string name="title_activity_user_idforgot_pwd">UserIDForgotPwd</string>
     <string name="title_activity_user_id_forgot_pwd">UserIdForgotPwd</string>
     <string name="title_activity_forgot__password">Forgot_Password</string>
-
-
+    <string name="title_activity_display_password">DisplayPassword</string>
 
 
 </resources>
