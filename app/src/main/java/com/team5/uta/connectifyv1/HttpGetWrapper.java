@@ -38,6 +38,16 @@ public class HttpGetWrapper extends AsyncTask<HttpGet, Void, InputStream> {
 
     private AddInterestActivity addInterestActivity;
 
+    public SecurityQuestions getSecurityQuestionsActivity() {
+        return securityQuestionsActivity;
+    }
+
+    public void setSecurityQuestionsActivity(SecurityQuestions securityQuestionsActivity) {
+        this.securityQuestionsActivity = securityQuestionsActivity;
+    }
+
+    private SecurityQuestions securityQuestionsActivity;
+
     @Override
     protected InputStream doInBackground(HttpGet... httpget) {
         Log.i("http_wrapper","Inside doInBackground");
