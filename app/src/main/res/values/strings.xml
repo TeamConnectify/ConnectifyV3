@@ -54,6 +54,7 @@
     <string name="title_activity_user_idforgot_pwd">UserIDForgotPwd</string>
     <string name="title_activity_user_id_forgot_pwd">UserIdForgotPwd</string>
     <string name="title_activity_forgot__password">Forgot_Password</string>
+    <string name="title_activity_notification">NotificationActivity</string>
 
 
 
