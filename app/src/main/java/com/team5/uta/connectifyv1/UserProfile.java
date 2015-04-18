@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,28 +34,35 @@ public class UserProfile extends ActionBarActivity {
         setContentView(R.layout.activity_user_profile);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f5793f")));
 
-        this.user = (User)getIntent().getSerializableExtra("user");
+        this.user = (User) getIntent().getSerializableExtra("user");
         this.selectedInterests = this.user.getInterests();
 
 
         final Interest[] interestPool = new Interest[selectedInterests.size()];
-        for(int i=0;i<selectedInterests.size();i++) {
+        for (int i = 0; i < selectedInterests.size(); i++) {
             Interest interest = selectedInterests.get(i);
             interestPool[i] = interest;
         }
 
 
         final InterestDataAdapter adapter = new InterestDataAdapter(UserProfile.this, interestPool);
-        grid=(GridView)findViewById(R.id.grid);
+        grid = (GridView) findViewById(R.id.grid);
         grid.setAdapter(adapter);
 
-        username = (TextView)findViewById(R.id.username);
-        username.setText(user.getFname()+" "+user.getLname());
+        username = (TextView) findViewById(R.id.username);
+        username.setText(user.getFname() + " " + user.getLname());
 
-        userImage = (ImageView)findViewById(R.id.imageView);
+        userImage = (ImageView) findViewById(R.id.imageView);
         userImage.setImageResource(R.drawable.photo);
-    }
 
+        final Button changepwdbttn = (Button) findViewById(R.id.button4);
+        changepwdbttn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent changepassword = new Intent(UserProfile.this, ForgotPassword.class);
+                startActivity(changepassword);
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -15,11 +15,6 @@
         android:orderInCategory="100"
         app:showAsAction="never"
         />
-    <item
-        android:id="@+id/interests"
-        android:title="@string/interests"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        />
+
 
 </menu>

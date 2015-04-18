@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,28 +29,20 @@ public class ForgotPassword extends ActionBarActivity {
         final TextView question_3 = (TextView) findViewById(R.id.q3);
         final Intent i = getIntent();
         final String []q1 = i.getStringArrayExtra("qa");
+        final String []a1 = i.getStringArrayExtra("aa");
         final String pwd = i.getStringExtra("pwd");
+
         question_1.setText(q1[0]);
         question_2.setText(q1[1]);
         question_3.setText(q1[2]);
 
-
-        final String []a1 = i.getStringArrayExtra("aa");
-            Log.i("as",a1[0]);
-            Log.i("as",a1[1]);
-            Log.i("as",a1[2]);
-
-
-
-            final Button submit1=(Button) findViewById(R.id.submit_button_1);
-            submit1.setOnClickListener(new View.OnClickListener(){
+        final Button submit1=(Button) findViewById(R.id.submit_button_1);
+        submit1.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v) {
                     String ans1 = answer_1.getText().toString();
                     String ans2 = answer_2.getText().toString();
                     String ans3 = answer_3.getText().toString();
-                    Log.i("answer1",ans1);
-                    Log.i("answer2",ans2);
-                    Log.i("answer3",ans3);
+
                     if(a1[0].equals(ans1) && a1[1].equals(ans2) && a1[2].equals(ans3))
                     {
                         Intent forgotpasswordActivity = new Intent(ForgotPassword.this,DisplayPassword.class);
@@ -64,9 +55,6 @@ public class ForgotPassword extends ActionBarActivity {
                     }
         }
         });
-
-
-
 
     }
 

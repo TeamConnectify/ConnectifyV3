@@ -68,6 +68,14 @@
             android:name=".DisplayPassword"
             android:label="Connectify" >
         </activity>
+        <activity
+            android:name=".ChangePassword.NewPassword"
+            android:label="@string/title_activity_new_password" >
+        </activity>
+        <activity
+            android:name=".ChangePassword.ChangeSecurityQuestions"
+            android:label="@string/title_activity_change_security_questions" >
+        </activity>
     </application>
 
 </manifest>
