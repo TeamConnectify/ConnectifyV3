@@ -133,6 +133,9 @@ public class UserIdForgotPwd extends ActionBarActivity {
             Log.i("password",password);
 
             Intent securityQuestionsActivity = new Intent(UserIdForgotPwd.this,ForgotPassword.class);
+            securityQuestionsActivity.putExtra("qa",questions);
+            securityQuestionsActivity.putExtra("aa",answers);
+            securityQuestionsActivity.putExtra("pwd",password);
             startActivity(securityQuestionsActivity);
 
         } else {
