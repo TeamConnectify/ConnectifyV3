@@ -64,6 +64,10 @@
             android:name=".ForgotPassword"
             android:label="Connectify" >
         </activity>
+        <activity
+            android:name=".DisplayPassword"
+            android:label="Connectify" >
+        </activity>
     </application>
 
 </manifest>
