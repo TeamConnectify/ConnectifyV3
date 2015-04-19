@@ -2,6 +2,7 @@ package com.team5.uta.connectifyv1;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.team5.uta.connectifyv1.ChangePassword.ChangeSecurityQuestions;
 import com.team5.uta.connectifyv1.ChangePassword.NewPassword;
@@ -92,7 +93,20 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
             this.loginActivity.getInterestFromLoginResult(result1);
         }  else if(result1.contains("Get Location Success")) {
             this.mapActivity.getUsersLocationResult(result1);
-        } else if(result1.contains("Get other user interest")) {
+        } else if(result1.contains("UserDetails")) {
+            try {
+                this.notificationActivity.userDetailsCallback(result1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if(result1.contains("notification")) {
+            try {
+                this.notificationActivity.openUserProfile(result1);
+                Log.i("msg", "notification openUserProfile");
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+        }  else if(result1.contains("Get other user interest")) {
             this.mapActivity.getOtherUserInterestResult(result1);
         } else if(result1.contains("Get Security Questions")) {
             try {
@@ -221,5 +235,15 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
         this.securityQuestionsActivity = securityQuestionsActivity;
     }
 
+
+    public NotificationActivity getNotificationActivity() {
+        return notificationActivity;
+    }
+
+    public void setNotificationActivity(NotificationActivity notificationActivity) {
+        this.notificationActivity = notificationActivity;
+    }
+
+    private NotificationActivity notificationActivity;
 
 }
