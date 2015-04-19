@@ -4,6 +4,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.team5.uta.connectifyv1.ChangePassword.ChangeSecurityQuestions;
+import com.team5.uta.connectifyv1.ChangePassword.NewPassword;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -206,6 +209,9 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
 
     private SecurityQuestions securityQuestionsActivity;
 
+
+
+    private UserIdForgotPwd userIdForgotPwd;
     public UserIdForgotPwd getUserIdForgotPwd() {
         return userIdForgotPwd;
     }
@@ -214,7 +220,21 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
         this.userIdForgotPwd = userIdForgotPwd;
     }
 
-    private UserIdForgotPwd userIdForgotPwd;
+
+    private NewPassword newPassword;
+
+    public void setNewPassword(NewPassword newPassword) {
+        this.newPassword = newPassword;
+    }
+
+
+
+    private ChangeSecurityQuestions changesecurityQuestionsActivity;
+
+    public void setChangeSecurityQuestionsActivity(ChangeSecurityQuestions changesecurityQuestionsActivity) {
+        this.securityQuestionsActivity = securityQuestionsActivity;
+    }
+
 
     public NotificationActivity getNotificationActivity() {
         return notificationActivity;
