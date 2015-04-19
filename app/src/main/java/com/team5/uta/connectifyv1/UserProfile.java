@@ -13,6 +13,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.team5.uta.connectifyv1.ChangePassword.NewPassword;
 import com.team5.uta.connectifyv1.adapter.Interest;
 import com.team5.uta.connectifyv1.adapter.InterestDataAdapter;
 
@@ -58,8 +59,10 @@ public class UserProfile extends ActionBarActivity {
         final Button changepwdbttn = (Button) findViewById(R.id.button4);
         changepwdbttn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent changepassword = new Intent(UserProfile.this, ForgotPassword.class);
+                Intent changepassword = new Intent(UserProfile.this, NewPassword.class);
+                changepassword.putExtra("user", user);
                 startActivity(changepassword);
+
             }
         });
     }

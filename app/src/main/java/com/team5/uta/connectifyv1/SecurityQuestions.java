@@ -138,7 +138,7 @@ public class SecurityQuestions extends ActionBarActivity implements AdapterView.
 
         switch (position) {
             case 0:
-                // Whatever you want to happen when the first item gets selected
+                // Whatever y ou want to happen when the first item gets selected
                 break;
             case 1:
                 // Whatever you want to happen when the second item gets selected
