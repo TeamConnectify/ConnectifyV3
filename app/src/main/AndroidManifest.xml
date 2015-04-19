@@ -76,6 +76,14 @@
             android:name=".ChangePassword.ChangeSecurityQuestions"
             android:label="@string/title_activity_change_security_questions" >
         </activity>
+        <activity
+            android:name=".NotificationActivity"
+            android:label="Connectify" >
+        </activity>
+        <activity
+            android:name=".OtherUserProfile"
+            android:label="Connectify" >
+        </activity>
     </application>
 
 </manifest>
