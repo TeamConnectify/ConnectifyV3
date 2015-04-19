@@ -434,6 +434,11 @@ public class MapActivity extends ActionBarActivity implements LocationListener,
                 Intent intent2 = new Intent(this, AddInterestActivity.class);
                 startActivity(intent2);
                 break;
+            case R.id.notification:
+                //Toast.makeText(getBaseContext(), "You selected Home", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(this, NotificationActivity.class);
+                startActivity(intent3);
+                break;
 
         }
         return true;
