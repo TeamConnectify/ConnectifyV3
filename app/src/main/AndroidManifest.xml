@@ -70,11 +70,11 @@
         </activity>
         <activity
             android:name=".ChangePassword.NewPassword"
-            android:label="@string/title_activity_new_password" >
+            android:label="Connectify" >
         </activity>
         <activity
             android:name=".ChangePassword.ChangeSecurityQuestions"
-            android:label="@string/title_activity_change_security_questions" >
+            android:label="Connectify" >
         </activity>
         <activity
             android:name=".NotificationActivity"

@@ -9,65 +9,71 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Q1"
-        android:id="@+id/q1"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Security Questions"
+        android:id="@+id/textView3"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sec_ques_spinner1"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginTop="48dp"
+        android:layout_alignEnd="@+id/textView3" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/a1"
-        android:layout_below="@+id/q1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:hint="Enter Answer 1"/>
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/editText10"
+        android:background="@drawable/edittextstyle"
+        android:layout_below="@+id/sec_ques_spinner1"
+        android:layout_alignEnd="@+id/sec_ques_spinner1"
+        android:layout_alignStart="@+id/sec_ques_spinner1" />
 
-    <TextView
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Q2"
-        android:id="@+id/q2"
-        android:layout_below="@+id/a1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
-        />
+        android:id="@+id/sec_ques_spinner2"
+        android:layout_alignStart="@+id/editText10"
+        android:layout_alignEnd="@+id/editText10"
+        android:layout_below="@+id/editText10" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/a2"
-        android:hint="Enter Answer 2"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/a1"
-        android:layout_alignStart="@+id/a1" />
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/editText11"
+        android:background="@drawable/edittextstyle"
+        android:layout_below="@+id/sec_ques_spinner2"
+        android:layout_alignEnd="@+id/sec_ques_spinner2"
+        android:layout_alignStart="@+id/sec_ques_spinner2" />
 
-    <TextView
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Q3"
-        android:id="@+id/q3"
-        android:layout_below="@+id/a2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp" />
+        android:id="@+id/sec_ques_spinner3"
+        android:layout_below="@+id/editText11"
+        android:layout_alignStart="@+id/editText11"
+        android:layout_alignEnd="@+id/editText11" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/a3"
-        android:hint="Enter Answer 3"
-        android:layout_below="@+id/q3"
-        android:layout_alignLeft="@+id/a2"
-        android:layout_alignStart="@+id/a2"
-        android:layout_marginTop="46dp" />
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/editText12"
+        android:background="@drawable/edittextstyle"
+        android:layout_below="@+id/sec_ques_spinner3"
+        android:layout_alignEnd="@+id/sec_ques_spinner3"
+        android:layout_alignStart="@+id/sec_ques_spinner3" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:text="Submit"
-        android:id="@+id/submit_button_1"
+        android:id="@+id/button3"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
 
 </RelativeLayout>
