@@ -83,6 +83,7 @@ public class NewPassword extends ActionBarActivity {
                         httpPost = new HttpPost("http://omega.uta.edu/~mxs1773/updatepassword.php");
                         httpWrapper.setNewPassword(NewPassword.this);
                         httpWrapper.execute(httpPost);
+                        Toast.makeText(getApplicationContext(), "Password Changed!.", Toast.LENGTH_SHORT).show();
                     }
                     catch(Exception e){
                         Log.e("register_activity", "Error in http connection " + e.toString());
