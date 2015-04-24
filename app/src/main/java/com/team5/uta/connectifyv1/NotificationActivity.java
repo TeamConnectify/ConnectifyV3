@@ -1,17 +1,21 @@
 package com.team5.uta.connectifyv1;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.ActionBarActivity;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.team5.uta.connectifyv1.adapter.Interest;
 
@@ -29,24 +33,77 @@ public class NotificationActivity extends ActionBarActivity {
     private TextView user;
     private User otherUser;
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f5793f")));
-        final Button unlock1=(Button) findViewById(R.id.button1);
-        final Button unlock3=(Button) findViewById(R.id.button3);
-        final Button unlock5=(Button) findViewById(R.id.button5);
-        final Button unlock7=(Button) findViewById(R.id.button7);
 
-        user = (TextView) findViewById(R.id.textView5);
+        ScrollView scroll = (ScrollView) this.findViewById(R.id.notification_list);
+        TableRow.LayoutParams scrollparams = new TableRow.LayoutParams(500, 600);
+        scroll.setLayoutParams(scrollparams);
 
-        unlock1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                getUserDetails("4");
+        final TableLayout tbl = new TableLayout(this);
+        TableLayout.LayoutParams tblparams = new TableLayout.LayoutParams(1000, 500);
+        tbl.setLayoutParams(tblparams);
+
+        View.OnClickListener unlocklistener = new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                getUserDetails("" + v.getId());
+                Log.i("Message", "ID : " + v.getId());
             }
-        });
+        };
+
+        View.OnClickListener ignorelistener = new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                tbl.removeView((View)v.getParent());
+            }
+        };
+
+        for (int idx = 0; idx < userList.length; idx++) {
+
+            Button unlock = new Button(this);
+            //LinearLayout.LayoutParams unlockparams = new LinearLayout.LayoutParams(100, 50);
+            //unlockparams.setMargins(30, 0, 10, 0); //left, top, right, bottom
+            //unlockparams.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+            //unlock.setLayoutParams(unlockparams);
+            unlock.setText("Unlock");
+            unlock.setId(Integer.parseInt(userList[idx]));
+            unlock.setOnClickListener(unlocklistener);
+
+            Button ignore = new Button(this);
+//            LinearLayout.LayoutParams ignoreparams = new LinearLayout.LayoutParams(100, 50);
+//            ignoreparams.setMargins(20, 0, 20, 0); //left, top, right, bottom
+//            ignoreparams.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+//            ignore.setLayoutParams(ignoreparams);
+            ignore.setText("Ignore");
+            ignore.setOnClickListener(ignorelistener);
+
+            TextView counter = new TextView(this);
+//            LinearLayout.LayoutParams counterparams = new LinearLayout.LayoutParams(50, 50);
+//            counterparams.setMargins(20, 0, 0, 0); //left, top, right, bottom
+//            counterparams.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+//            counter.setLayoutParams(ignoreparams);
+            counter.setText("22");
+
+            TableRow tr = new TableRow(this);
+            tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
+            tr.addView(unlock);
+            tr.addView(ignore);
+            tr.addView(counter);
+
+            tbl.addView(tr);
+        }
+
+        scroll.addView(tbl);
+
+        Log.i("Lengths : ", "Scroll - "+scroll.getScrollBarSize() + " ; table - " + tbl.getChildCount());
     }
 
 
@@ -105,7 +162,7 @@ public class NotificationActivity extends ActionBarActivity {
     }
 
     public void userDetailsCallback(String data) throws JSONException {
-Log.i("Msg","userDetailsCallback");
+
         JSONObject jObj = new JSONObject(data);
 
         String userid = jObj.getString("userId");
@@ -152,4 +209,14 @@ Log.i("Msg","userDetailsCallback");
             e.printStackTrace();
         }
     }
+
+    public String[] getUserList() {
+        return userList;
+    }
+
+    public void setUserList(String[] userList) {
+        this.userList = userList;
+    }
+
+    private String[] userList = {"1", "2", "3", "4", "5", "6", "7"};
 }
