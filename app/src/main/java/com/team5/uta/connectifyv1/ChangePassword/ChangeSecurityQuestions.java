@@ -41,25 +41,25 @@ public class ChangeSecurityQuestions extends ActionBarActivity implements Adapte
         setContentView(R.layout.activity_change_security_questions);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f5793f")));
 
-        final Spinner spinner01= (Spinner) findViewById(R.id.sec_ques_spinner1);
-        final Spinner spinner02= (Spinner) findViewById(R.id.sec_ques_spinner2);
-        final Spinner spinner03= (Spinner) findViewById(R.id.sec_ques_spinner3);
+        final Spinner spinner01 = (Spinner) findViewById(R.id.sec_ques_spinner1);
+        final Spinner spinner02 = (Spinner) findViewById(R.id.sec_ques_spinner2);
+        final Spinner spinner03 = (Spinner) findViewById(R.id.sec_ques_spinner3);
 
         final EditText answer_1 = (EditText) findViewById(R.id.editText10);
-        final EditText answer_2= (EditText) findViewById(R.id.editText11);
+        final EditText answer_2 = (EditText) findViewById(R.id.editText11);
         final EditText answer_3 = (EditText) findViewById(R.id.editText12);
 
         final Intent i = getIntent();
         final String e = i.getStringExtra("emailid");
         this.user = (User) getIntent().getSerializableExtra("user");
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(ChangeSecurityQuestions.this,
-                android.R.layout.simple_spinner_item,paths1);
+                android.R.layout.simple_spinner_item, paths1);
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(ChangeSecurityQuestions.this,
-                android.R.layout.simple_spinner_item,paths2);
+                android.R.layout.simple_spinner_item, paths2);
 
         ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(ChangeSecurityQuestions.this,
-                android.R.layout.simple_spinner_item,paths3);
+                android.R.layout.simple_spinner_item, paths3);
 
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -72,57 +72,67 @@ public class ChangeSecurityQuestions extends ActionBarActivity implements Adapte
         spinner03.setAdapter(adapter3);
         spinner03.setOnItemSelectedListener(this);
 
-        final Button submit1=(Button) findViewById(R.id.button3);
-
-        submit1.setOnClickListener(new View.OnClickListener(){
+        final Button skip = (Button) findViewById(R.id.skipbutton);
+        skip.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               String ans1 = answer_1.getText().toString();
-               String ans2 = answer_2.getText().toString();
-               String ans3 = answer_3.getText().toString();
+                Intent skipsecurity = new Intent(ChangeSecurityQuestions.this, UserProfile.class);
+                skipsecurity.putExtra("user",user);
+                startActivity(skipsecurity);
+            }
+        });
 
-                    Intent changesecurity = new Intent(ChangeSecurityQuestions.this,UserProfile.class);
-                    changesecurity.putExtra("user",user);
-                if((ans1.trim().equals(""))||(ans2.trim().equals(""))||
-                        (ans3.trim().equals("")))
-                {
+        final Button submit1 = (Button) findViewById(R.id.button3);
+        submit1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String ans1 = answer_1.getText().toString();
+                String ans2 = answer_2.getText().toString();
+                String ans3 = answer_3.getText().toString();
+
+                Intent changesecurity = new Intent(ChangeSecurityQuestions.this, UserProfile.class);
+                changesecurity.putExtra("user", user);
+                if ((ans1.trim().equals("")) || (ans2.trim().equals("")) ||
+                        (ans3.trim().equals(""))) {
                     Toast.makeText(getApplicationContext(), "All Fields are Required.", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else {
                     String q1 = spinner01.getSelectedItem().toString();
                     String q2 = spinner02.getSelectedItem().toString();
                     String q3 = spinner03.getSelectedItem().toString();
 
+                    Log.i("assad", q1);
+                    Log.i("assad", q2);
+                    Log.i("assad", q3);
+                    Log.i("assad", ans1);
+                    Log.i("assad", ans2);
+                    Log.i("assad", ans3);
 
                     // declare parameters that are passed to PHP script
                     ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();
 
                     // define the parameter
-                    postParameters.add(new BasicNameValuePair("email",e));
-                    postParameters.add(new BasicNameValuePair("q1",q1));
-                    postParameters.add(new BasicNameValuePair("a1",ans1));
-                    postParameters.add(new BasicNameValuePair("q2",q2));
-                    postParameters.add(new BasicNameValuePair("a2",ans2));
-                    postParameters.add(new BasicNameValuePair("q3",q3));
-                    postParameters.add(new BasicNameValuePair("a3",ans3));
+                    postParameters.add(new BasicNameValuePair("email", e));
+                    postParameters.add(new BasicNameValuePair("q1", q1));
+                    postParameters.add(new BasicNameValuePair("a1", ans1));
+                    postParameters.add(new BasicNameValuePair("q2", q2));
+                    postParameters.add(new BasicNameValuePair("a2", ans2));
+                    postParameters.add(new BasicNameValuePair("q3", q3));
+                    postParameters.add(new BasicNameValuePair("a3", ans3));
                     httpWrapper = new HttpWrapper();
                     httpWrapper.setPostParameters(postParameters);
-                    Log.i("assad",q1);
-                    Log.i("assad",q2);
-                    Log.i("assad",q3);
+                    Log.i("assad", q1);
+                    Log.i("assad", q2);
+                    Log.i("assad", q3);
                     //http post
-                    try{
+                    try {
                         httpPost = new HttpPost("http://omega.uta.edu/~mxs1773/updatesecutiy.php");
                         httpWrapper.setChangeSecurityQuestionsActivity(ChangeSecurityQuestions.this);
                         httpWrapper.execute(httpPost);
-                    }
-                    catch(Exception e){
+                    } catch (Exception e) {
                         Log.e("register_activity", "Error in http connection " + e.toString());
                     }
 
                 }
-                    startActivity(changesecurity);
-                }
+                startActivity(changesecurity);
+            }
         });
     }
 
