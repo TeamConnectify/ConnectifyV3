@@ -22,7 +22,10 @@ public class DisplayPassword extends ActionBarActivity {
         Intent i = getIntent();
         String pwd = i.getStringExtra("pwd1");
         final TextView pass = (TextView) findViewById(R.id.pwd);
+        System.getProperty("line.separator");
+        System.getProperty("line.separator");
         pass.setText(pwd);
+
         final Button submit1=(Button) findViewById(R.id.loginpage);
         submit1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
