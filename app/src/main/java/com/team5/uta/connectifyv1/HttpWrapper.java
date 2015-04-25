@@ -95,13 +95,15 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
             this.mapActivity.getUsersLocationResult(result1);
         } else if(result1.contains("UserDetails")) {
             try {
-                this.notificationActivity.userDetailsCallback(result1);
+                if(this.notificationActivity != null) this.notificationActivity.userDetailsCallback(result1);
+                else if(this.friendsListActivity != null) this.friendsListActivity.userDetailsCallback(result1);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         } else if(result1.contains("notification")) {
             try {
-                this.notificationActivity.openUserProfile(result1);
+                if(this.notificationActivity != null) this.notificationActivity.openUserProfile(result1);
+                else if(this.friendsListActivity != null) this.friendsListActivity.openUserProfile(result1);
                 Log.i("msg", "notification openUserProfile");
             } catch(Exception e) {
                 e.printStackTrace();
@@ -111,6 +113,20 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
         } else if(result1.contains("Get Security Questions")) {
             try {
                 this.userIdForgotPwd.getSecurityQuestions(result1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if(result1.contains("Friends List")) {
+                this.friendsListActivity.getFriendsListCallback(result1);
+        } else if(result1.contains("unfriend")) {
+            try {
+                this.friendsListActivity.unfriendCallback(result1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else if(result1.contains("friend")) {
+            try {
+                this.notificationActivity.friendCallback(result1);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -245,5 +261,15 @@ public class HttpWrapper extends AsyncTask<HttpPost, Void, InputStream> {
     }
 
     private NotificationActivity notificationActivity;
+
+    public FriendsListActivity getFriendsListActivity() {
+        return friendsListActivity;
+    }
+
+    public void setFriendsListActivity(FriendsListActivity friendsListActivity) {
+        this.friendsListActivity = friendsListActivity;
+    }
+
+    private FriendsListActivity friendsListActivity;
 
 }
